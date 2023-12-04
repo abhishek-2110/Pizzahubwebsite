@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>pizzahub</title>
+  <link rel="stylesheet" href="pizzastyle.css">
+  <link rel="icon" type="icon" href="pizza.ico">
+</head>
+
+<script>
+
+
+  function updatePrice(priceId, sizeId) {
+    var sizeSelect = document.getElementById(sizeId);
+    var priceElement = document.getElementById(priceId);
+    var price = 0;
+
+   
+    switch (sizeSelect.value) {
+      case "small":
+        price = 5;
+        break;
+      case "medium":
+        price = 10;
+        break;
+      case "large":
+        price = 15;
+        break;
+      default:
+        price = 0;
+    }
+
+   
+    priceElement.textContent = "$" + price.toFixed(2);
+  }
+
+
+
+  function addToCart(priceId, quantityId, sizeId, pizzaName, productId) 
+  {
+    var priceElement = document.getElementById(priceId);
+    var quantityInput = document.getElementById(quantityId);
+    var sizeSelect = document.getElementById(sizeId);
+    var sessionItems = sessionStorage.getItem("items");
+    var sessionTotal = sessionStorage.getItem("totalPrice");
+
+    var price = parseFloat(priceElement.textContent.substring(1));
+    var quantity = parseInt(quantityInput.value);
+    var size = sizeSelect.value;
+    var totalPrice = price * quantity;
+    var cartItemsElement = document.getElementById("cart-items");
+    cartItemsElement.innerHTML = sessionItems+ quantity + " " + size + " " + pizzaName + " = $" + totalPrice.toFixed(2) + "<br>";
+   
+
+    var currentTotal = 0;
+    if(sessionTotal != null ) {
+      currentTotal = parseFloat (sessionTotal);
+    }
+    var cartTotalElement =  document.getElementById("cart-total");
+    cartTotalElement.textContent = (currentTotal + totalPrice).toFixed(2);
+  
+  
+  sessionStorage.setItem("items",cartItemsElement.innerHTML);
+  sessionStorage.setItem("totalPrice", cartTotalElement.textContent);
+  }
+
+
+
+
+</script>    
+    
+<body>
+
+<nav>
+  <ul>
+       
+    <li><a href="pizzahub.html">PIZZAS</a></li>
+    <li><a href="sidenew.html">SIDES</a></li>
+    <li><a href="Desertsnew.html">DESSERTS</a></li>
+    <li><a href="Drinksnew.html">DRINKS</a></li>
+    <li><a href="checkout.html">CHECKOUT</a></li>
+
+     
+    <div class="desc" style="font-size: medium; float: right; margin-right: 4px; margin-bottom: 6px;">Delivery <div class="sub" style="font-size: large;">120 Queen Street</div></div>
+
+  </ul>
+</nav>
+
+<div class="content">
+  <h1>Welcome to My Pizza Hub </h1>
+  <p>Check out our amazing products below:</p>
+
+  <div class="piz-bg">
+    <div class="piz-txt">
+      <h1>WEEKEND offers</h1>
+    </div>
+  </div>
+  
+  <div class="product" id="product-list">
+    
+       <div>
+            <img src="cheese.jpg" width="350" height="300" alt="cheese">
+            <div class="desc" id="pizzaName">Loaded cheese pizza .</div><br>
+            <div class="price" id="price1">$</div>
+            Quantity: <input type="number" id="quantity1" value="0">
+            <label for="size1">Size:</label>
+            <select id="size1" onchange="updatePrice('price1', 'size1', 'Loaded Cheese Pizza', 1)">
+              <option value="none"> Select Size </option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+            <button onclick="addToCart('price1', 'quantity1', 'size1', 'Loaded Cheese Pizza', 1)">Add to Cart</button>
+          </div>
+      
+          <div>
+            <img src="chicken.jpg" width="350" height="300" alt="vegetarian">
+            <div class="desc">100% chicken breast, veggies and apricot sauce.</div><br>
+            <div class="price" id="price2">$</div>
+            Quantity: <input type="number" id="quantity2" value="0">
+            <label for="size2">Size:</label>
+            <select id="size2" onchange="updatePrice('price2', 'size2', '100% chicken breast, veggies and apricot sauce', 2)">
+              <option value="none">Select Size</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+            <button onclick="addToCart('price2', 'quantity2', 'size2', 'Chicken Pizza', 2)">Add to Cart</button>
+          </div>
+  
+           <div>
+            <img src="peproni.jpg" width="350" height="300" alt="bbq">
+            <div class="desc">Pepperoni pizza loaded with double toppings!</div><br>
+            <div class="price" id="price3">$</div>
+            Quantity: <input type="number" id="quantity3" value="0">
+            <label for="size3">Size:</label>
+            <select id="size3" onchange="updatePrice('price3', 'size3', 'Pepperoni pizza loaded with double toppings!')">
+                <option value="none">Select Size</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <button onclick="addToCart('price3', 'quantity3', 'size3','Pepperoni Pizza',3)">Add to Cart</button>
+        </div>
+
+        <div>
+          <img src="corn.jpg" width="350" height="300" alt="bbq">
+          <div class="desc">cheese and corn pizza loaded with double toppings!</div><br>
+          <div class="price" id="price4">$</div>
+          Quantity: <input type="number" id="quantity4" value="0">
+          <label for="size4">Size:</label>
+          <select id="size4" onchange="updatePrice('price4', 'size4', 'cheese and corn pizza loaded with double toppings!')">
+              <option value="none">Select Size</option>
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+          </select>
+          <button onclick="addToCart('price4', 'quantity4', 'size4', 'Cheese and Corn Pizza', 4)">Add to Cart</button>
+      </div>
+      
+          <div>
+        <img src="hawaiian.jpg" width="350" height="300" alt="bbq">
+        <div class="desc">Hawaiian pizza loaded with double toppings!</div><br>
+        <div class="price" id="price5">$</div>
+        Quantity: <input type="number" id="quantity5" value="0">
+        <label for="size5">Size:</label>
+        <select id="size5" onchange="updatePrice('price5', 'size5', 'cheese and corn pizza loaded with double toppings!')">
+            <option value="none">Select Size</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+        </select>
+        <button onclick="addToCart('price5', 'quantity5', 'size5', 'Cheese and Corn Pizza', 5)">Add to Cart</button>
+    </div>
+         
+    <div>
+      <img src="margerita.jpg" width="350" height="300" alt="bbq">
+      <div class="desc">Cheese, chopped tomatoes and pesto.</div><br>
+      <div class="price" id="price6">$</div>
+      Quantity: <input type="number" id="quantity6" value="0">
+      <label for="size6">Size:</label>
+      <select id="size6" onchange="updatePrice('price6', 'size6', 'cheese and corn pizza loaded with double toppings!')">
+          <option value="none">Select Size</option>
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+      </select>
+      <button onclick="addToCart('price6', 'quantity6', 'size6', 'Margherita Pizza', 6)">Add to Cart</button>
+  </div>
+
+
+
+ <footer>
+  order details
+ 
+ <div class="cart" id="shopping-cart">
+    <h1>Shopping Cart</h1>
+    <li id="cart-items">
+    
+   </li>
+    <p>Total: $<span id="cart-total">0.00</span></p>
+    <a href = "checkout.html"> <h2>CHECKOUT</h2></a>
+
+  </div>
+  </footer>  
+
+
+</body>
+</html>

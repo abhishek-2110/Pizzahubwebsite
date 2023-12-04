@@ -1,0 +1,39 @@
+.container {
+    width: 300px;
+    padding: 16px;
+    background-color: rgb(205, 189, 20);
+    margin: 0 auto;
+    margin-top: 100px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.container h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.container form label {
+    display: block;
+    margin-top: 20px;
+}
+
+.container form input[type="email"],
+.container form input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid blanchedalmond;
+    box-sizing: border-box;
+}
+
+.container form input[type="submit"]{
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid rgb(204, 204, 204);
+background-color: rgb(157, 35, 5);
+box-sizing: border-box;
+}
+
